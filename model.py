@@ -462,7 +462,7 @@ if __name__ == "__main__":
     model = EDModel2(config, torch.tensor(pretrained_embeddings, dtype=torch.float32))
     model.to(config.device)
 
-    optimizer = optim.Adam(model.params_requires_grad(),
+    optimizer = optim.Adadelta(model.params_requires_grad(),
                            weight_decay=config.weight_decay,
                            lr=config.learning_rate,
                            eps=config.adam_eps)
