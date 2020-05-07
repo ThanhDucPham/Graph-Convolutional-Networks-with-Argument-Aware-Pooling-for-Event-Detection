@@ -6,7 +6,8 @@ implement model in paper Graph Convolutional Networks With Argument-Aware Poolin
 - build vocabularies : rebuild event vocab(BIO format in this project, include vocab[PAD] =-100), entity vocab( BIO format include pad label, id=0), word vocab( include pad token with id=0, unknow token with id =1) or just use vocabs from data folder
 - use load_data_json and window_encode2 functions in utils.py to build data that will be fed into model
 # Train model:
- sample for training model have in file model.py( use EDModel2)
+- hyperparameters of model are stored in Config class
+- sample for training model have in file model.py( use EDModel2)
  
  # References: 
 Graph Convolutional Networks With Argument-Aware Pooling for Event Detection, 
