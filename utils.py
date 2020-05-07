@@ -173,7 +173,7 @@ def encode_window2(tokens, anchors, entities, deps, word2id=None, event2id=None,
     for sent, entities_sent, deps_sent, label in zip(tokens, entities, deps, anchors):
         w_windows.append([word2id.get(w.lower(), unk_id) for w in sent[:window_size]] + [pad_id] * (window_size - len(sent)))
         ori_word_windows.append(sent[:window_size])
-        e_windows.append([entity2id.get(e, none_e_id) for e in entities_sent[:window_size]] + [enpad_id]* (window_size - len(sent)))
+        e_windows.append([entity2id[e] for e in entities_sent[:window_size]] + [enpad_id]* (window_size - len(sent)))
         labels.append([event2id[e] for e in label[:window_size]] + [evenpad_id] * (window_size - len(sent)))
 
         deps_win, inv_deps_win = [], []
@@ -538,8 +538,8 @@ def evaluate(config, eval_dataset, model, tokenizer, prefix="", check=None):
 
 if __name__ == "__main__":
     nwords, word2id, id2word, _ = load_trimmed_word2vec('data/trimmed_word2vec_new.txt')
-    event2id = load_vocab('data/vocab_event_2.txt', False)
-    entity2id = load_vocab('data/vocab_ne_2.txt')
+    event2id = load_vocab('data/vocab_event.txt', False)
+    entity2id = load_vocab('data/vocab_ner_tail.txt')
     word2id.update({'PAD': 0})
     event2id.update({'PAD': -100})
     vocab_event = event2id

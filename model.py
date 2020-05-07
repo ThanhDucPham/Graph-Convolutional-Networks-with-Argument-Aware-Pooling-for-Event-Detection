@@ -49,12 +49,12 @@ class Config(object):
 
 
     def load_data(self):
-        vocab_event = load_vocab(self.dir_data + 'vocab_event_2.txt', hasPad=False)
+        vocab_event = load_vocab(self.dir_data + 'vocab_event.txt', hasPad=False)
         self.vocab_event = dict({'O': 0})
         for key in vocab_event:
             if key[2:] not in self.vocab_event and key[2:] != '':
                 self.vocab_event.update({key[2:]: len(self.vocab_event)})
-        self.vocab_ner = load_vocab(self.dir_data + 'vocab_ne_2.txt')
+        self.vocab_ner = load_vocab(self.dir_data + 'vocab_ner_tail.txt')
         self.num_class_events = len(self.vocab_event)
         self.num_class_entities = len(self.vocab_ner)
 
@@ -414,8 +414,8 @@ if __name__ == "__main__":
 
     print('--> Load vocab: ')
     word2id = load_vocab('data/vocab_word.txt')
-    event2id = load_vocab('data/vocab_event_2.txt', False)
-    entity2id = load_vocab('data/vocab_ne_2.txt')
+    event2id = load_vocab('data/vocab_event.txt', False)
+    entity2id = load_vocab('data/vocab_ner_tail.txt')
     nwords, word2id, id2word, pretrained_embeddings = load_trimmed_word2vec('data/trimmed_word2vec_new.txt')
     # print('Data preparation')
     # word2id.update({'PAD': 0})
