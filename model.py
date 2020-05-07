@@ -11,7 +11,7 @@ from torch.nn import functional as F
 from torch import optim
 from torch.optim.lr_scheduler import LambdaLR
 from torch.utils.tensorboard import SummaryWriter
-from Event.GCN_2018.utils import load_vocab
+from utils import load_vocab
 
 class Config(object):
     def __init__(self):
@@ -410,7 +410,7 @@ class EDModel2(nn.Module):
 
 if __name__ == "__main__":
 
-    from Event.GCN_2018.utils import load_trimmed_word2vec, load_vocab, encode_window2, load_data_pickle
+    from utils import load_trimmed_word2vec, load_vocab, encode_window2, load_data_pickle
 
     print('--> Load vocab: ')
     word2id = load_vocab('data/vocab_word.txt')
